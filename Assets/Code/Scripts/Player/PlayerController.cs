@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private ItemController currentItem;
     public UIManager uiManager;
+    private PlayerState playerState;
+    private AnimatorOverrideController DefaultOutfit;
+
     //public AnimatorOverrideController AnimatorOverride;
 
     void Start()
@@ -34,20 +37,25 @@ public class PlayerController : MonoBehaviour
       
         if (playerData != null && currentItem != null)
         {
-            Debug.Log("Interact");
             playerData.BuyItem(currentItem.itemData);
             uiManager.OnPurchase.Invoke(playerData.GetMoney());
-            animator.runtimeAnimatorController = currentItem.itemData.Override;
-            //animator.runtimeAnimatorController = AnimatorOverride;
             Destroy(currentItem.gameObject);
         }
     }
 
+    private void EquipOutfit()
+    {
+        animator.runtimeAnimatorController = currentItem.itemData.Override;
+    }
+
     private void OnMove(InputValue inputValue)
     {
-        Vector2 movementVector = inputValue.Get<Vector2>();
-        movementX = movementVector.x;
-        movementY = movementVector.y;
+        if (playerState != PlayerState.Interacting)
+        {
+            Vector2 movementVector = inputValue.Get<Vector2>();
+            movementX = movementVector.x;
+            movementY = movementVector.y;
+        }
     }
 
     private void UpdateAnimation()
@@ -66,9 +74,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //TODO: Refactor with compare by object type
         if (other.gameObject.CompareTag("Item"))
         {
             currentItem = other.gameObject.GetComponent<ItemController>();
+        }
+        else if (other.gameObject.CompareTag("ShopKeeper"))
+        {
+
         }
     }
 
@@ -79,4 +92,11 @@ public class PlayerController : MonoBehaviour
             currentItem = null;
         }
     }
+}
+
+public enum PlayerState
+{
+    Idle,
+    Walking,
+    Interacting
 }
