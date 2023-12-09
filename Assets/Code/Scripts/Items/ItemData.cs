@@ -7,13 +7,7 @@ public class ItemData : ScriptableObject
 {
     public int Price;
     public string Name;
-    public Animator SpriteSet;
-
-    public ItemData(int price, string name)
-    {
-        Name = name;
-        Price = price;
-    }
+    public AnimatorOverrideController Override;
 
     public int GetPrice()
     {

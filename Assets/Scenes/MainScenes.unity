@@ -6184,6 +6184,10 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 83456346}
+    - target: {fileID: 776602887022366453, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
+      propertyPath: AnimatorOverride
+      value: 
+      objectReference: {fileID: 22100000, guid: b9b5b218c9412a942a18429a9bfe30c4, type: 2}
     - target: {fileID: 776602887022366456, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
       propertyPath: m_RootOrder
       value: 1

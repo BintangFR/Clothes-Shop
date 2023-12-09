@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Villager_Outfit
+  m_Controller: {fileID: 9100000, guid: 2eec590bda899dd4a92911de1c917172, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 28b51d31cb42a0a4fb56a75b4a47941d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 23ad59a2245f68d468e55fa69521e94b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f827c8819a9514541890983f4f402f14, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 72247ce6f22a8a34fb70ae8b96d3f7bb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a27a7b068cc05ba499c349e71236bfde, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 755f6378b361cd94c9e75ac3e70334da, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 217cb53b240399541b23ca7abd0e0119, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f1b5dfa4f874aaa4ab31a2b342c07964, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d2aeb5254f1721a4fa20e6a6e22ce400, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 75a0219786a84c24fb05bb925d1d6e1a, type: 2}

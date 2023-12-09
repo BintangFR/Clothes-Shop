@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private ItemController currentItem;
     public UIManager uiManager;
+    //public AnimatorOverrideController AnimatorOverride;
 
     void Start()
     {
@@ -35,8 +36,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Interact");
             playerData.BuyItem(currentItem.itemData);
-            Destroy(currentItem.gameObject);
             uiManager.OnPurchase.Invoke(playerData.GetMoney());
+            animator.runtimeAnimatorController = currentItem.itemData.Override;
+            //animator.runtimeAnimatorController = AnimatorOverride;
+            Destroy(currentItem.gameObject);
         }
     }
 
