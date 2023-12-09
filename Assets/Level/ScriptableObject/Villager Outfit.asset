@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Villager Outfit
   m_EditorClassIdentifier: 
   Price: 150
-  Name: Villager Outfit
+  ItemName: Villager Outfit
   Override: {fileID: 22100000, guid: b9b5b218c9412a942a18429a9bfe30c4, type: 2}
+  Icon: {fileID: 371195791, guid: c30b304f05e44d2428a19db8e0b7e024, type: 3}

@@ -6,17 +6,29 @@ public class PlayerData
 {
     private int Money;
     private List<ItemData> Inventory;
+    private int MaxInventorySize = 6;
 
     
-    public PlayerData(int money)
+    public PlayerData(int money, int maxInventorySize)
     {
         Money = money;
+        MaxInventorySize = maxInventorySize;
         Inventory = new List<ItemData>();
     }
 
     public int GetMoney()
     {
         return Money;
+    }
+
+    public List<ItemData> GetInventory()
+    {
+        return Inventory;
+    }
+
+    public int GetMaxInventorySize()
+    {
+        return MaxInventorySize;
     }
 
     public void BuyItem(ItemData item)

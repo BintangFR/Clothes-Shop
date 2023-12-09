@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float movementY;
     public float speed = 1;
     public int money = 0;
+    public int maxInventorySize = 6;
     public Animator animator;
     private PlayerData playerData;
     private PlayerInput playerInput;
@@ -26,26 +27,35 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
-        playerData = new PlayerData(money);
+        playerData = new PlayerData(money, maxInventorySize);
         playerInput.actions["Interact"].performed += BuyItem;
-        uiManager.Init(playerData.GetMoney());
+        playerInput.actions["OpenInventory"].performed += delegate { uiManager.OnOpenInventory.Invoke(); };
+        uiManager.Init(playerData.GetMoney(), EquipOutfit);
         
     }
 
     private void BuyItem(InputAction.CallbackContext context)
     {
       
-        if (playerData != null && currentItem != null)
+        if (playerData != null && currentItem != null && playerData.GetInventory().Count < playerData.GetMaxInventorySize())
         {
             playerData.BuyItem(currentItem.itemData);
-            uiManager.OnPurchase.Invoke(playerData.GetMoney());
+            uiManager.OnPurchase.Invoke(currentItem.itemData, playerData.GetMoney());
             Destroy(currentItem.gameObject);
         }
     }
 
-    private void EquipOutfit()
+    private void EquipOutfit(string itemName)
     {
-        animator.runtimeAnimatorController = currentItem.itemData.Override;
+        foreach (var item in playerData.GetInventory())
+        {
+            if (item.ItemName == itemName)
+            {
+                animator.runtimeAnimatorController = item.Override;
+                break;
+            }
+        }
+        //animator.runtimeAnimatorController = currentItem.itemData.Override;
     }
 
     private void OnMove(InputValue inputValue)

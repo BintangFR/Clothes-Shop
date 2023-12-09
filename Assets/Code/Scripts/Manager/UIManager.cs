@@ -8,19 +8,25 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI MoneyText;
 
-    public UnityEvent<int> OnPurchase;
+    public InventoryUIController InventoryUIController;
 
-    private void Start()
-    {
-        OnPurchase.AddListener(UpdateMoneyText);
-    }
+    public UnityEvent<ItemData, int> OnPurchase;
+    public UnityEvent OnOpenInventory;
 
-    public void Init(int PlayerMoney)
+
+    public void Init(int PlayerMoney, UnityAction<string> onEquip)
     {
         UpdateMoneyText(PlayerMoney);
+        OnPurchase.AddListener(Transaction);
+        OnOpenInventory.AddListener(() => InventoryUIController.gameObject.SetActive(true));
+        InventoryUIController.Init(onEquip);
     }
 
-
+    public void Transaction(ItemData itemData, int playerMoney)
+    {
+        InventoryUIController.AddItem(itemData);
+        UpdateMoneyText(playerMoney);
+    }
     
     private void UpdateMoneyText(int PlayerMoney)
     {
