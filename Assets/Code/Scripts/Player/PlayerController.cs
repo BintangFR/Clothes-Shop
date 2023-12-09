@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     public float speed = 1;
+    public Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     private void OnMove(InputValue inputValue)
@@ -23,9 +25,17 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    private void UpdateAnimation()
+    {
+        animator.SetFloat("Horizontal", movementX);
+        animator.SetFloat("Vertical", movementY);
+        animator.SetFloat("Speed", rb.velocity.sqrMagnitude);
+    }
+
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, movementY, 0.0f);
+        UpdateAnimation();
+        Vector2 movement = new Vector2(movementX, movementY);
         rb.AddForce(movement * speed);
     }
 }
