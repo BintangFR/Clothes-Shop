@@ -783,6 +783,9 @@ MonoBehaviour:
   OnPurchase:
     m_PersistentCalls:
       m_Calls: []
+  InitData:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &213475962
 GameObject:
   m_ObjectHideFlags: 0
@@ -5780,6 +5783,32 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1359011609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1359011609, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
+  m_PrefabInstance: {fileID: 776602888438665197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1359011612
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359011609}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 06a63fb2ca5914048a357d2e10fc6610, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1482767175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6049,10 +6078,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 776602887022366453, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: money
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 776602887022366453, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 83456346}
@@ -6102,10 +6127,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 776602887022366462, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 776602887022366462, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
