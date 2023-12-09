@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemData
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemData")]
+public class ItemData : ScriptableObject
 {
-    private int Price;
-    private string Name;
+    public int Price;
+    public string Name;
+    public Animator SpriteSet;
 
     public ItemData(int price, string name)
     {

@@ -9,12 +9,18 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI MoneyText;
 
     public UnityEvent<int> OnPurchase;
-    public UnityEvent<int> InitData;
 
     private void Start()
     {
         OnPurchase.AddListener(UpdateMoneyText);
     }
+
+    public void Init(int PlayerMoney)
+    {
+        UpdateMoneyText(PlayerMoney);
+    }
+
+
     
     private void UpdateMoneyText(int PlayerMoney)
     {

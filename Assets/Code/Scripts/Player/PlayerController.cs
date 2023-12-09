@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,14 +23,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         playerData = new PlayerData(money);
-        uiManager.InitData.Invoke(playerData.GetMoney());
         playerInput.actions["Interact"].performed += BuyItem;
-
-    }
-
-    public PlayerData GetPlayerData()
-    {
-        return playerData;
+        uiManager.Init(playerData.GetMoney());
+        
     }
 
     private void BuyItem(InputAction.CallbackContext context)
