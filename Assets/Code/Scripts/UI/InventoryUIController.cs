@@ -65,6 +65,7 @@ public class InventoryUIController : MonoBehaviour
         OnMenuClosed.Invoke();
         gameObject.SetActive(false);
         PositiveButtonText.text = DefaultPositiveText;
+        PositiveButton.interactable = false;
     }
 
     public void PositiveAction()
