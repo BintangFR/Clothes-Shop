@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private ItemController currentItem;
     private PlayerState playerState;
     private CurrentInteractable currentInteractable;
-    private AnimatorOverrideController DefaultOutfit;
+    public AnimatorOverrideController DefaultOutfit;
     public UnityAction<ItemData, int> OnPurchase;
     public UnityAction<int> OnSell;
     public UnityAction OpenShop;
@@ -89,6 +89,10 @@ public class PlayerController : MonoBehaviour
 
     public void SellSelectedItem(ItemData itemData)
     {
+        if (playerData.GetEquippedOutfit() == itemData)
+        {
+            UnequipOutfit();
+        }
         playerData.SellItem(itemData);
         OnSell.Invoke(playerData.GetMoney());
         //OnPurchase.Invoke(itemData, playerData.GetMoney());
@@ -106,11 +110,17 @@ public class PlayerController : MonoBehaviour
         {
             if (item.ItemName == itemName)
             {
+                playerData.EquipOutfit(item);
                 animator.runtimeAnimatorController = item.Override;
                 break;
             }
         }
         //animator.runtimeAnimatorController = currentItem.itemData.Override;
+    }
+
+    private void UnequipOutfit()
+    {
+        animator.runtimeAnimatorController = DefaultOutfit;
     }
 
     private void OnMove(InputValue inputValue)

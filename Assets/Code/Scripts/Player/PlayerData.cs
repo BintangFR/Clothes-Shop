@@ -37,6 +37,11 @@ public class PlayerData
         EquippedOutfit = item;
     }
 
+    public ItemData GetEquippedOutfit()
+    {
+        return EquippedOutfit;
+    }
+
     public void BuyItem(ItemData item)
     {
         Inventory.Add(item);

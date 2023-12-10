@@ -7705,70 +7705,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1334328010, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Name
-      value: Body
-      objectReference: {fileID: 0}
-    - target: {fileID: 1334328012, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Size.x
-      value: 0.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1334328012, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Size.y
-      value: 0.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1334328012, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1248021387, guid: c0f78b2cae6da014dbbac83e88d72248, type: 3}
-    - target: {fileID: 1334328012, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359011609, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Name
-      value: Head
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359011611, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Size.x
-      value: 0.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359011611, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Size.y
-      value: 0.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359011611, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359011611, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1737361042, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1737361042, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1737361042, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 810720507
-      objectReference: {fileID: 0}
-    - target: {fileID: 1819214106, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2eec590bda899dd4a92911de1c917172, type: 2}
-    - target: {fileID: 776602887022366453, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: uiManager
-      value: 
-      objectReference: {fileID: 83456346}
-    - target: {fileID: 776602887022366453, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
-      propertyPath: AnimatorOverride
-      value: 
-      objectReference: {fileID: 22100000, guid: b9b5b218c9412a942a18429a9bfe30c4, type: 2}
     - target: {fileID: 776602887022366456, guid: f8f1c83decd71c14ca84f701ebfa3bf9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7914,10 +7850,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2585275485195855085, guid: 45843d4389243d84587f27135e6cfae6, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c0dfb0f6681bd3e4ab6f83753ba31215, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45843d4389243d84587f27135e6cfae6, type: 3}
 --- !u!114 &2585275485102432199 stripped
