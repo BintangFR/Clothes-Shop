@@ -8,6 +8,7 @@ public class SlotButton : MonoBehaviour
 {
     public Button Button;
     public Image Icon;
+    public Sprite EmptyIcon;
     private ItemData Item;
     private UnityAction OnSelected;
     private bool IsEmpty = true;
@@ -35,6 +36,14 @@ public class SlotButton : MonoBehaviour
         Icon.sprite = item.Icon;
         IsEmpty = false;
         Button.interactable = true;
+    }
+
+    public void EmptySlot()
+    {
+        this.Item = null;
+        Icon.sprite = EmptyIcon;
+        IsEmpty = true;
+        Button.interactable = false;
     }
 
     public ItemData getItem()

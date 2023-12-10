@@ -15,6 +15,7 @@ public class InventoryUIController : MonoBehaviour
     public string Selling = "Sell";
     public SlotButton SelectedSlot;
     private UnityAction<string> OnEquip;
+    private UnityAction<ItemData> OnSell;
     private PlayerState currentPlayerState;
     private UnityAction OnMenuClosed;
     // Start is called before the first frame update
@@ -40,9 +41,10 @@ public class InventoryUIController : MonoBehaviour
     }
 
 
-    public void InitAction(UnityAction<string> onEquip, UnityAction onMenuClosed)
+    public void InitAction(UnityAction<string> onEquip, UnityAction<ItemData> onSell,  UnityAction onMenuClosed)
     {
         OnEquip += onEquip;
+        OnSell += onSell;
         OnMenuClosed += onMenuClosed;
     }
 
@@ -69,7 +71,7 @@ public class InventoryUIController : MonoBehaviour
     {
         if(currentPlayerState == PlayerState.Selling)
         {
-            //SellSelectedItem();
+            SellSelectedItem();
         }
         else if(currentPlayerState == PlayerState.BrowseInventory)
         {
@@ -97,6 +99,15 @@ public class InventoryUIController : MonoBehaviour
         if (SelectedSlot != null && SelectedSlot.getItem() != null)
         {
             OnEquip.Invoke(SelectedSlot.getItem().ItemName);
+        }
+    }
+
+    public void SellSelectedItem()
+    {
+        if (SelectedSlot != null && SelectedSlot.getItem() != null)
+        {
+            OnSell.Invoke(SelectedSlot.getItem());
+            SelectedSlot.EmptySlot();
         }
     }
 }

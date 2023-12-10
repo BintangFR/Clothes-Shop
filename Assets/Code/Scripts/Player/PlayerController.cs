@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private CurrentInteractable currentInteractable;
     private AnimatorOverrideController DefaultOutfit;
     public UnityAction<ItemData, int> OnPurchase;
+    public UnityAction<int> OnSell;
     public UnityAction OpenShop;
     public UnityAction<PlayerState> OnStateChanged;
 
@@ -38,9 +39,10 @@ public class PlayerController : MonoBehaviour
         return playerData;
     }
 
-    public void InitAction(UnityAction<ItemData, int> onPurchase, UnityAction <CurrentInteractable> OpenMenu, UnityAction<PlayerState> state)
+    public void InitAction(UnityAction<ItemData, int> onPurchase, UnityAction<int> onSell, UnityAction <CurrentInteractable> OpenMenu, UnityAction<PlayerState> state)
     {
         OnPurchase += onPurchase;
+        OnSell += onSell;
         OpenShop += ()=>OpenMenu(CurrentInteractable.ShopKeeper);
         playerInput.actions["OpenInventory"].performed += delegate { 
             OpenMenu.Invoke(CurrentInteractable.Item); 
@@ -83,6 +85,13 @@ public class PlayerController : MonoBehaviour
             ChangeState(PlayerState.Selling);
             OpenShop.Invoke();
         }   
+    }
+
+    public void SellSelectedItem(ItemData itemData)
+    {
+        playerData.SellItem(itemData);
+        OnSell.Invoke(playerData.GetMoney());
+        //OnPurchase.Invoke(itemData, playerData.GetMoney());
     }
 
     private void ChangeState(PlayerState state)

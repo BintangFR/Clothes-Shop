@@ -20,9 +20,9 @@ public class UIManager : MonoBehaviour
         InventoryUIController.Init();
     }
 
-    public void InitAction(UnityAction<string> onEquip, UnityAction onMenuClosed)
+    public void InitAction(UnityAction<string> onEquip, UnityAction<ItemData> onSell, UnityAction onMenuClosed)
     {
-        InventoryUIController.InitAction(onEquip, onMenuClosed);
+        InventoryUIController.InitAction(onEquip,onSell, onMenuClosed);
     }
 
     public void SetCurrentState(PlayerState playerState)
@@ -35,13 +35,13 @@ public class UIManager : MonoBehaviour
         InventoryUIController.OpenMenu(type);
     }
 
-    public void Transaction(ItemData itemData, int playerMoney)
+    public void BuyItem(ItemData itemData, int playerMoney)
     {
         InventoryUIController.AddItem(itemData);
         UpdateMoneyText(playerMoney);
     }
-    
-    private void UpdateMoneyText(int PlayerMoney)
+
+    public void UpdateMoneyText(int PlayerMoney)
     {
         MoneyText.text = "Money: " + PlayerMoney.ToString();
     }
