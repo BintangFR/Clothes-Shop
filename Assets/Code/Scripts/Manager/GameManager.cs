@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         playerData = PlayerController.Init();
         UIManager.Init(playerData.GetMoney());
-        PlayerController.InitAction(UIManager.Transaction, UIManager.OpenInventory);
-        UIManager.InitAction(PlayerController.EquipOutfit);
+        PlayerController.InitAction(UIManager.Transaction, UIManager.OpenMenu, UIManager.SetCurrentState);
+        UIManager.InitAction(PlayerController.EquipOutfit, PlayerController.ResetState);
     }
 }

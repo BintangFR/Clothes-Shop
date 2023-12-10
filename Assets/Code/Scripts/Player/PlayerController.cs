@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static UnityEngine.CullingGroup;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,18 +19,13 @@ public class PlayerController : MonoBehaviour
     private PlayerData playerData;
     private PlayerInput playerInput;
     private ItemController currentItem;
-    //public UIManager uiManager;
     private PlayerState playerState;
+    private CurrentInteractable currentInteractable;
     private AnimatorOverrideController DefaultOutfit;
     public UnityAction<ItemData, int> OnPurchase;
+    public UnityAction OpenShop;
+    public UnityAction<PlayerState> OnStateChanged;
 
-    //public AnimatorOverrideController AnimatorOverride;
-
-    void Start()
-    {
-      
-        
-    }
 
     public PlayerData Init()
     {
@@ -42,22 +38,57 @@ public class PlayerController : MonoBehaviour
         return playerData;
     }
 
-    public void InitAction(UnityAction<ItemData, int> onPurchase, UnityAction OpenInventory)
+    public void InitAction(UnityAction<ItemData, int> onPurchase, UnityAction <CurrentInteractable> OpenMenu, UnityAction<PlayerState> state)
     {
         OnPurchase += onPurchase;
-        playerInput.actions["OpenInventory"].performed += delegate { OpenInventory.Invoke(); };
-        playerInput.actions["Interact"].performed += BuyItem;
+        OpenShop += ()=>OpenMenu(CurrentInteractable.ShopKeeper);
+        playerInput.actions["OpenInventory"].performed += delegate { 
+            OpenMenu.Invoke(CurrentInteractable.Item); 
+            ChangeState(PlayerState.BrowseInventory);
+        };
+        playerInput.actions["Interact"].performed += Interact;
+        OnStateChanged += state;
     }
 
-    private void BuyItem(InputAction.CallbackContext context)
+    public void ResetState()
     {
-      Debug.Log("BuyItem");
-        if (playerData != null && currentItem != null && playerData.GetInventory().Count < playerData.GetMaxInventorySize())
+        ChangeState(PlayerState.Idle);
+    }
+
+    public PlayerState GetCurrentState()
+    {
+        return playerState;
+    }
+
+    private void Interact(InputAction.CallbackContext context)
+    {
+     
+        if (currentInteractable is CurrentInteractable.Item && playerData.GetInventory().Count < playerData.GetMaxInventorySize())
         {
+            Debug.Log("BuyItem");
             playerData.BuyItem(currentItem.itemData);
             OnPurchase.Invoke(currentItem.itemData, playerData.GetMoney());
             Destroy(currentItem.gameObject);
+            return;
         }
+        else if (playerData.GetInventory().Count >= playerData.GetMaxInventorySize())
+        {
+            Debug.Log("Inventory is full");
+            return;
+        }
+
+        if (currentInteractable is CurrentInteractable.ShopKeeper)
+        {
+            Debug.Log("SellItem");
+            ChangeState(PlayerState.Selling);
+            OpenShop.Invoke();
+        }   
+    }
+
+    private void ChangeState(PlayerState state)
+    {
+        OnStateChanged.Invoke(state);
+        playerState = state;
     }
 
     public void EquipOutfit(string itemName)
@@ -75,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue inputValue)
     {
-        if (playerState != PlayerState.Interacting)
+        if (playerState == PlayerState.Idle)
         {
             Vector2 movementVector = inputValue.Get<Vector2>();
             movementX = movementVector.x;
@@ -103,10 +134,11 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Item"))
         {
             currentItem = other.gameObject.GetComponent<ItemController>();
+            currentInteractable = CurrentInteractable.Item;
         }
         else if (other.gameObject.CompareTag("ShopKeeper"))
         {
-
+            currentInteractable = CurrentInteractable.ShopKeeper;
         }
     }
 
@@ -116,6 +148,7 @@ public class PlayerController : MonoBehaviour
         {
             currentItem = null;
         }
+        currentInteractable = CurrentInteractable.None;
     }
 }
 
@@ -123,5 +156,13 @@ public enum PlayerState
 {
     Idle,
     Walking,
-    Interacting
+    Selling,
+    BrowseInventory
+}
+
+public enum CurrentInteractable
+{
+    None,
+    Item,
+    ShopKeeper
 }

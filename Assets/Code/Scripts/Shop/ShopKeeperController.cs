@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopKeeperController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject ShopBanner;
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        //TODO: Refactor with compare by object type
+        if (other.gameObject.CompareTag("Player"))
+        {
+            ShopBanner.SetActive(true);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D other)
     {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            ShopBanner.SetActive(false);
+        }
     }
 }

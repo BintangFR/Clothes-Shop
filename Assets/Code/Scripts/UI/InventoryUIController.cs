@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,17 +10,18 @@ public class InventoryUIController : MonoBehaviour
     public List<SlotButton> Slot;
     public Button PositiveButton;
     public Button BackButton;
+    public TextMeshProUGUI PositiveButtonText;
     public string DefaultPositiveText;
     public string Selling = "Sell";
     public SlotButton SelectedSlot;
     private UnityAction<string> OnEquip;
-
+    private PlayerState currentPlayerState;
+    private UnityAction OnMenuClosed;
     // Start is called before the first frame update
- 
+    private UnityAction<PlayerState> OnStateChanged;
 
-    public void Init(UnityAction<string> onEquip)
+    public void Init()
     {
-        OnEquip += onEquip;
         //Load Current Icon
         foreach (var slot in Slot)
         {
@@ -30,14 +32,51 @@ public class InventoryUIController : MonoBehaviour
             });
         }
         PositiveButton.interactable = false;
-        PositiveButton.onClick.AddListener(() => EquipSelectedItem());
-        BackButton.onClick.AddListener(() => gameObject.SetActive(false));
+        PositiveButton.onClick.AddListener(() => PositiveAction());
+        BackButton.onClick.AddListener(() =>
+        {
+            CloseMenu();
+        });
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void InitAction(UnityAction<string> onEquip, UnityAction onMenuClosed)
     {
-        
+        OnEquip += onEquip;
+        OnMenuClosed += onMenuClosed;
+    }
+
+    public void UpdateCurrentPlayerState(PlayerState playerState)
+    {
+        currentPlayerState = playerState;
+    }
+
+    public void OpenMenu(CurrentInteractable type)
+    {
+        gameObject.SetActive(true);
+        if(type == CurrentInteractable.ShopKeeper)
+            PositiveButtonText.text = Selling;
+    }
+
+    public void CloseMenu()
+    {
+        OnMenuClosed.Invoke();
+        gameObject.SetActive(false);
+        PositiveButtonText.text = DefaultPositiveText;
+    }
+
+    public void PositiveAction()
+    {
+        if(currentPlayerState == PlayerState.Selling)
+        {
+            //SellSelectedItem();
+        }
+        else if(currentPlayerState == PlayerState.BrowseInventory)
+        {
+            EquipSelectedItem();
+        }
+        OnMenuClosed.Invoke();
+        gameObject.SetActive(false);
     }
 
     public void AddItem(ItemData item)

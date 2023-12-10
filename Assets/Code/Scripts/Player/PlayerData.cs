@@ -36,4 +36,10 @@ public class PlayerData
         Inventory.Add(item);
         Money -= item.GetPrice();
     }
+
+    public void SellItem(ItemData item)
+    {
+        Inventory.Remove(item);
+        Money += item.GetPrice();
+    }
 }

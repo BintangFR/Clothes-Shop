@@ -17,17 +17,24 @@ public class UIManager : MonoBehaviour
     public void Init(int PlayerMoney)
     {
         UpdateMoneyText(PlayerMoney);
+        InventoryUIController.Init();
     }
 
-    public void InitAction(UnityAction<string> onEquip)
+    public void InitAction(UnityAction<string> onEquip, UnityAction onMenuClosed)
     {
-        InventoryUIController.Init(onEquip);
+        InventoryUIController.InitAction(onEquip, onMenuClosed);
     }
 
-    public void OpenInventory()
+    public void SetCurrentState(PlayerState playerState)
     {
-        InventoryUIController.gameObject.SetActive(true);
+        InventoryUIController.UpdateCurrentPlayerState(playerState);
     }
+
+    public void OpenMenu(CurrentInteractable type)
+    {
+        InventoryUIController.OpenMenu(type);
+    }
+
     public void Transaction(ItemData itemData, int playerMoney)
     {
         InventoryUIController.AddItem(itemData);

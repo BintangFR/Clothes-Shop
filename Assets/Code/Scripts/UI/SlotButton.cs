@@ -16,6 +16,7 @@ public class SlotButton : MonoBehaviour
     {
         OnSelected += onSelected;
         Button.onClick.AddListener(() => OnSelected.Invoke());
+        Button.interactable = false;
     }
 
     public void setIsEmpty(bool isEmpty)
@@ -33,6 +34,7 @@ public class SlotButton : MonoBehaviour
         this.Item = item;
         Icon.sprite = item.Icon;
         IsEmpty = false;
+        Button.interactable = true;
     }
 
     public ItemData getItem()
