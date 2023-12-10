@@ -1,21 +1,13 @@
 # Clothes-Shop
 # Shop Design References
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd97bec8-3bf9-4519-9d07-d05d91b80ecf/0e00b0c4-e2e6-4349-ae22-9e25d8f973a0/Untitled.jpeg)
+![Untitled](https://github.com/SovietChan/Clothes-Shop/assets/52289632/7522f9d1-8a6e-4a23-bb83-ce4e97dc1b42)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd97bec8-3bf9-4519-9d07-d05d91b80ecf/2fb764f2-5c18-425c-a0b2-feef86b0ee65/Untitled.jpeg)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd97bec8-3bf9-4519-9d07-d05d91b80ecf/6120b568-f5d2-482b-a251-57ebfea9c425/Untitled.jpeg)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd97bec8-3bf9-4519-9d07-d05d91b80ecf/17f4782d-0fc0-4360-9300-20b8b7f8bdb6/Untitled.jpeg)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd97bec8-3bf9-4519-9d07-d05d91b80ecf/8b35fc4c-0f58-4c29-89ee-91a7d373ffb3/Untitled.jpeg)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd97bec8-3bf9-4519-9d07-d05d91b80ecf/5e2f54f5-88ce-46b5-84ce-30392b8b06d1/Untitled.jpeg)
+![Untitled-1](https://github.com/SovietChan/Clothes-Shop/assets/52289632/51780c81-a04a-449d-802a-37489277db17)
 
 # Module Dependency Diagram
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dd97bec8-3bf9-4519-9d07-d05d91b80ecf/75fde9f7-159e-47de-bef0-65040d1bed5c/Untitled.png)
+![Untitled](https://github.com/SovietChan/Clothes-Shop/assets/52289632/0e60ae62-e67a-4445-98c0-01b7e43df59c)
 
 **1. GameManager:**
 
