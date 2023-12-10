@@ -10,18 +10,24 @@ public class UIManager : MonoBehaviour
 
     public InventoryUIController InventoryUIController;
 
-    public UnityEvent<ItemData, int> OnPurchase;
-    public UnityEvent OnOpenInventory;
+    //public UnityAction<ItemData, int> OnPurchase;
+    //public UnityAction OnOpenInventory;
 
 
-    public void Init(int PlayerMoney, UnityAction<string> onEquip)
+    public void Init(int PlayerMoney)
     {
         UpdateMoneyText(PlayerMoney);
-        OnPurchase.AddListener(Transaction);
-        OnOpenInventory.AddListener(() => InventoryUIController.gameObject.SetActive(true));
+    }
+
+    public void InitAction(UnityAction<string> onEquip)
+    {
         InventoryUIController.Init(onEquip);
     }
 
+    public void OpenInventory()
+    {
+        InventoryUIController.gameObject.SetActive(true);
+    }
     public void Transaction(ItemData itemData, int playerMoney)
     {
         InventoryUIController.AddItem(itemData);

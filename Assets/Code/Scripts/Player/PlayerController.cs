@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -17,35 +18,49 @@ public class PlayerController : MonoBehaviour
     private PlayerData playerData;
     private PlayerInput playerInput;
     private ItemController currentItem;
-    public UIManager uiManager;
+    //public UIManager uiManager;
     private PlayerState playerState;
     private AnimatorOverrideController DefaultOutfit;
+    public UnityAction<ItemData, int> OnPurchase;
 
     //public AnimatorOverrideController AnimatorOverride;
 
     void Start()
     {
+      
+        
+    }
+
+    public PlayerData Init()
+    {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         playerData = new PlayerData(money, maxInventorySize);
-        playerInput.actions["Interact"].performed += BuyItem;
-        playerInput.actions["OpenInventory"].performed += delegate { uiManager.OnOpenInventory.Invoke(); };
-        uiManager.Init(playerData.GetMoney(), EquipOutfit);
         
+        
+       // uiManager.Init(playerData.GetMoney(), EquipOutfit);
+        return playerData;
+    }
+
+    public void InitAction(UnityAction<ItemData, int> onPurchase, UnityAction OpenInventory)
+    {
+        OnPurchase += onPurchase;
+        playerInput.actions["OpenInventory"].performed += delegate { OpenInventory.Invoke(); };
+        playerInput.actions["Interact"].performed += BuyItem;
     }
 
     private void BuyItem(InputAction.CallbackContext context)
     {
-      
+      Debug.Log("BuyItem");
         if (playerData != null && currentItem != null && playerData.GetInventory().Count < playerData.GetMaxInventorySize())
         {
             playerData.BuyItem(currentItem.itemData);
-            uiManager.OnPurchase.Invoke(currentItem.itemData, playerData.GetMoney());
+            OnPurchase.Invoke(currentItem.itemData, playerData.GetMoney());
             Destroy(currentItem.gameObject);
         }
     }
 
-    private void EquipOutfit(string itemName)
+    public void EquipOutfit(string itemName)
     {
         foreach (var item in playerData.GetInventory())
         {
